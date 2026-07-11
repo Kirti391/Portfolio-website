@@ -12,10 +12,19 @@ function Hero(){
 
 {/* Hero Content */}
 <div className="relative z-10 max-w-4xl flex flex-col items-center text-center">
-    
+    <div className="mb-6 gap-2 flex items-center rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2">
+    <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
+    <span className="text-sm text-emerald-300">Open to Internships & Opportunities</span>
+    </div>
+
+    <h1 className="text-5xl font-bold tracking-tight text-[#F2F3F5] md:text-7xl">Hi, I'm Kirti</h1>
+    <div className="mt-6 flex flex-col items-center">
+        <p className="text-xl text-gray-400">I'm a </p>
+        <h2 className="mt-2 bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-6xl font-extrabold text-transparent md:text-7xl">Developer</h2>
+    </div>
 </div>
 
-{/* <h1>Hi 👋</h1>
+{/* <h1>Hi </h1>
 <h6>I'm Alice</h6>
 <p>Frontend Developer &
 Computer Science Student </p>
