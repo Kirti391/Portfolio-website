@@ -1,4 +1,5 @@
 import Button from "./button";
+import { FiDownload, FiMail } from "react-icons/fi";
 
 function Hero(){
     return (
@@ -22,6 +23,11 @@ function Hero(){
         <p className="text-xl text-gray-400">I'm a </p>
         <h2 className="mt-2 bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-6xl font-extrabold text-transparent md:text-7xl">Developer</h2>
     </div>
+    <p className="mt-6 max-w-2xl text-lg text-gray-300 leading-8"> I build modern, responsive, and interactive web applications with
+  clean code, thoughtful user experiences, and a passion for learning
+  new technologies.</p>
+  <Button text="Download Resume" icon={<FiDownload/>} variant="primary"/>
+  <Button text="Contact Me" icon={<FiMail/>} variant="secondary"/>
 </div>
 
 {/* <h1>Hi </h1>
