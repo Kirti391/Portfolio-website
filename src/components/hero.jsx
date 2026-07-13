@@ -3,6 +3,8 @@ import { FiDownload, FiMail , FiGithub, FiLinkedin,} from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { SiLeetcode } from "react-icons/si";
 import SocialButton from "./socialButton";
+import { FiChevronDown } from "react-icons/fi";
+import resume from "../assets/Kirti_Resume.pdf";
 
 function Hero() {
     const roles = [
@@ -75,7 +77,7 @@ useEffect(() => {
     // }, [])
 
     return (
-        <section className="relative min-h-screen flex pt-24 justify-center px-6 ">
+        <section className="relative min-h-screen flex pt-16 justify-center px-6 ">
             {/* Background */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
@@ -84,7 +86,7 @@ useEffect(() => {
             </div>
 
             {/* Hero Content */}
-            <div className="relative z-10 max-w-3xl flex flex-col items-center text-center pb-20">
+            <div className="relative z-10 max-w-3xl flex flex-col items-center text-center ">
                 <div className="mb-6 gap-2 flex items-center rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2">
                     <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
                     <span className="text-sm text-emerald-300">Open to Internships & Opportunities</span>
@@ -108,13 +110,13 @@ useEffect(() => {
     <span className="ml-1 h-[0.8em] w-[2px] bg-white animate-blink rounded-full"></span>
 </h2></div>
                 </div>
-                <p className="mt-5 max-w-xl text-lg text-gray-300 leading-9"> I build modern, responsive, and interactive web applications with
+                <p className="mt-5 max-w-2xl text-lg text-gray-300 leading-9"> I build modern, responsive, and interactive web applications with
                     clean code, thoughtful user experiences, and a passion for learning
                     new technologies.</p>
-                <div className="flex items-center gap-4 mt-6">
-                    <Button text="Download Resume" icon={<FiDownload />} variant="primary" />
+                <div className="flex items-center gap-4 mt-6 ">
+                    <Button text="Download Resume"  href={resume} download={true} icon={<FiDownload />} variant="primary" />
                     <Button text="Contact Me" icon={<FiMail />} variant="secondary" /></div>
-<div className="mt-8 flex items-center gap-5">
+<div className="mt-8 flex items-center gap-5 ">
   <SocialButton
     icon={<FiGithub size={20} />}
     link="https://github.com/Kirti391"
@@ -136,6 +138,13 @@ useEffect(() => {
   />
 </div>
 
+<div className="absolute  bottom-24 left-1/2 -translate-x-1/2">
+<a href="#about" className="flex-col items-center text-gray-400 transition-all duration-300 hover:text-white">
+    <FiChevronDown size={28} className="animate-bounce" />
+    {/* <p className="mt-2 text-sm tracking-widest uppercase">Scroll</p> */}
+</a>
+
+</div>
 
             </div>
 
