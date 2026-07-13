@@ -1,5 +1,5 @@
 import Button from "./button";
-import { FiDownload, FiMail , FiGithub, FiLinkedin,} from "react-icons/fi";
+import { FiDownload, FiMail , FiGithub, FiLinkedin,FiBriefcase } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { SiLeetcode } from "react-icons/si";
 import SocialButton from "./socialButton";
@@ -87,10 +87,12 @@ useEffect(() => {
 
             {/* Hero Content */}
             <div className="relative z-10 max-w-3xl flex flex-col items-center text-center ">
-                <div className="mb-6 gap-2 flex items-center rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
-                    <span className="text-sm text-emerald-300">Open to Internships & Opportunities</span>
-                </div>
+                <div className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-indigo-400/20 bg-indigo-500/10 backdrop-blur-md px-4 py-2 shadow-lg shadow-indigo-500/5 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400/30 hover:bg-indigo-500/15 ">
+    <FiBriefcase className="text-indigo-400 text-lg" />
+    <span className="text-sm font-medium tracking-wide text-gray-300">
+        Open to Internships
+    </span>
+</div>
 
                 <h1 className="text-5xl font-bold tracking-tight text-[#F2F3F5] md:text-7xl mb-3">Hi, I'm Kirti</h1>
                 <div className="mt-4 flex flex-col items-center justify-center">
