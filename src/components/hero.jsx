@@ -1,6 +1,8 @@
 import Button from "./button";
-import { FiDownload, FiMail } from "react-icons/fi";
+import { FiDownload, FiMail , FiGithub, FiLinkedin,} from "react-icons/fi";
 import { useState, useEffect } from "react";
+import { SiLeetcode } from "react-icons/si";
+import SocialButton from "./socialButton";
 
 function Hero() {
     const roles = [
@@ -23,36 +25,55 @@ function Hero() {
     //     clearInterval(interval);
     //   };
     // }, []);
-    const typingSpeed = 120;
-    const deletingSpeed = 60;
-    useEffect(() => {
-        
-        const interval = setInterval(() => {
-              // deleting logic
-            if (isDeleting) {
-                if (charIndex > 0) {
-                    // Still deleting
-                    setCharIndex(prev => prev - 1);
-                }
-                else {
-                    // Word completely deleted
-                    setCurrentRole(prev => (prev + 1) % roles.length);
-                    setIsDeleting(false);
-                }
-            }
-// typing logic
-            else {
-                if (charIndex < roles[currentRole].length) { setCharIndex(prev => prev + 1); }
-                else {
-            setTimeout(() => {
-                 setIsDeleting(true);
-                     }, 800);
-            }
+const typingSpeed = 100;
+const deletingSpeed = 50;
+const pauseTime = 1000; 
+useEffect(() => {
 
-            }
-        }, isDeleting ? deletingSpeed : typingSpeed);
-        return () => clearInterval(interval);
-    }, [charIndex, isDeleting, currentRole]);
+    let timeout;
+
+    if (!isDeleting && charIndex < roles[currentRole].length) {
+
+        timeout = setTimeout(() => {
+            setCharIndex(prev => prev + 1);
+        }, typingSpeed);
+
+    }
+
+    else if (!isDeleting && charIndex === roles[currentRole].length) {
+
+        timeout = setTimeout(() => {
+            setIsDeleting(true);
+        }, pauseTime);
+
+    }
+
+    else if (isDeleting && charIndex > 0) {
+
+        timeout = setTimeout(() => {
+            setCharIndex(prev => prev - 1);
+        }, deletingSpeed);
+
+    }
+
+    else {
+
+        setIsDeleting(false);
+        setCurrentRole(prev => (prev + 1) % roles.length);
+
+    }
+
+    return () => clearTimeout(timeout);
+
+}, [charIndex, isDeleting, currentRole]);
+
+    // useEffect(()=>{
+    //     const cursorInterval=setInterval(() => {
+    //         setShowCursor(prev =>!prev);
+    //     }, 400);
+    //     return ()=> clearInterval(cursorInterval);
+    // }, [])
+
     return (
         <section className="relative min-h-screen flex pt-24 justify-center px-6 ">
             {/* Background */}
@@ -69,10 +90,23 @@ function Hero() {
                     <span className="text-sm text-emerald-300">Open to Internships & Opportunities</span>
                 </div>
 
-                <h1 className="text-5xl font-bold tracking-tight text-[#F2F3F5] md:text-7xl">Hi, I'm Kirti</h1>
-                <div className="mt-4 flex flex-col items-center">
-                    <p className="text-xl text-gray-400">I'm a </p>
-                    <h2 className="mt-2 bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-6xl font-extrabold text-transparent md:text-7xl">{roles[currentRole].slice(0, charIndex)}</h2>
+                <h1 className="text-5xl font-bold tracking-tight text-[#F2F3F5] md:text-7xl mb-3">Hi, I'm Kirti</h1>
+                <div className="mt-4 flex flex-col items-center justify-center">
+                   <p className="text-md md:text-2xl font-medium text-gray-400">
+    I'm a
+</p>
+                      {/* <span className="text-gray-300"> */}
+        {/* I'm a&nbsp;
+    </span> */}
+  <div className="h-20 flex items-center">
+<h2 className="mt-6 flex items-center justify-center text-5xl font-bold md:text-6xl">
+  
+    <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+        {roles[currentRole].slice(0, charIndex)}
+    </span>
+
+    <span className="ml-1 h-[0.8em] w-[2px] bg-white animate-blink rounded-full"></span>
+</h2></div>
                 </div>
                 <p className="mt-5 max-w-xl text-lg text-gray-300 leading-9"> I build modern, responsive, and interactive web applications with
                     clean code, thoughtful user experiences, and a passion for learning
@@ -80,6 +114,28 @@ function Hero() {
                 <div className="flex items-center gap-4 mt-6">
                     <Button text="Download Resume" icon={<FiDownload />} variant="primary" />
                     <Button text="Contact Me" icon={<FiMail />} variant="secondary" /></div>
+<div className="mt-8 flex items-center gap-5">
+  <SocialButton
+    icon={<FiGithub size={20} />}
+    link="https://github.com/Kirti391"
+  />
+
+  <SocialButton
+    icon={<FiLinkedin size={20} />}
+    link="https://linkedin.com/in/Kirti2005"
+  />
+
+  <SocialButton
+    icon={<SiLeetcode size={20} />}
+    link="https://leetcode.com/Kirti2005"
+  />
+
+  <SocialButton
+    icon={<FiMail size={20} />}
+    link="mailto:jainwarkirti8@gmail.com"
+  />
+</div>
+
 
             </div>
 
