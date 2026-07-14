@@ -1,70 +1,78 @@
-import SectionHeading from "./sectionHeading";
-import profile from "../assets/Kirti.jpeg";
-import AboutCard from "./aboutCard";
+import AboutHeading from "./AboutHeading";
+import AboutBackground from "./AboutBackground";
 import ProfileCard from "./ProfileCard";
+import InfoCard from "./infoCard";
+import "../styles/about.css";
+import profile from "../assets/Kirti.jpeg";
+
+import {
+    FiUser,
+    FiTarget,
+    FiBriefcase,
+    FiCoffee,
+} from "react-icons/fi";
+
 function About() {
-
     return (
-        <section id="about" className="relative overflow-hidden px-6 md:px-16 lg:px-28 py-28">
+        <section
+            id="about"
+            className="relative overflow-hidden px-6 py-32 md:px-12 lg:px-24"
+        >
+            <AboutBackground />
 
-            <div className="max-w-6xl mx-auto">
-                <SectionHeading title="About Me" subtitle="Get to know me beyond the code" />
-            </div>
-            <div className="absolute inset-0">
-                <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
-                <div className="absolute bottom-20 right-20 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl"></div>
-                {/* <div className="absolute right-1/2 h-80 w-80 rounded-full -translate-x-1/2 bg-violet-500/15 blur-3xl"></div> */}
-            </div>
-            <div className="flex flex-col md:flex-row items-center gap-16">
-                {/* Left side=image */}
-                <div className="flex justify-center ">
+            <div className="relative z-10 mx-auto max-w-7xl">
+
+                <AboutHeading
+                    title="About Me"
+                    subtitle="Get to know me beyond the code."
+                />
+
+                {/* Profile Card */}
+                <div className="mt-20 flex justify-center">
                     <ProfileCard image={profile} />
                 </div>
-                {/* Right side=text/content */}
-                <div className="flex-1">
 
-                    <h3 className="text-4xl font-bold tracking-tight text-white">
-                        Hi, I'm Kirti
-                    </h3>
+                {/* Information Grid */}
 
-                    <p className="mt-3 text-lg font-medium text-indigo-300">
-                        Frontend Developer • Computer Science Student
-                    </p>
+                <div className="mt-20 grid gap-8 lg:grid-cols-2 group-hover:scale-[1.02]">
 
-                    <div className="mt-8 space-y-5 text-lg leading-8 text-gray-300">
-
-                        <p>
-                            I'm a Computer Science student passionate about building
-                            modern, responsive, and user-friendly web applications.
-                            I enjoy transforming ideas into intuitive digital experiences
-                            through clean code and thoughtful design.
-                        </p>
-
-                        <p>
-                            Beyond frontend development, I'm continuously exploring
-                            backend technologies, strengthening my problem-solving skills,
-                            and learning how to build scalable applications from end to end.
-                        </p>
-
+                    <div className="fade-up delay-1 lg:-translate-y-6">
+                        <InfoCard
+                            icon={<FiUser />}
+                            title="Who I Am"
+                            description="I'm a Computer Science student passionate about crafting modern web experiences through clean design, interactive interfaces, and scalable code."
+                        />
                     </div>
-                    <div className="my-8 h-px w-full bg-white/10"></div>
-                    <div className="mt-10 grid gap-6 md:grid-cols-2">
 
-                        <AboutCard
+                    <div className="fade-up delay-2 lg:translate-y-6">
+                        <InfoCard
+                            icon={<FiTarget />}
                             title="Current Focus"
-                            description="Building modern React applications, strengthening DSA, and exploring backend development."
+                            description="Building full-stack applications with React, exploring backend development, and continuously strengthening my DSA skills."
                         />
-
-                        <AboutCard
-                            title="Looking For"
-                            description="Frontend internship opportunities where I can learn, collaborate, and contribute to real-world products."
-                        />
-
                     </div>
+
+                 <div className="fade-up delay-3 lg:translate-y-6">
+                        <InfoCard
+                            icon={<FiBriefcase />}
+                            title="Looking For"
+                            description="Seeking frontend and full-stack internship opportunities where I can learn from experienced developers and contribute to impactful products."
+                        />
+                    </div>
+
+                 <div className="fade-up delay-4 lg:-translate-y-6">
+                        <InfoCard
+                            icon={<FiCoffee />}
+                            title="Beyond Coding"
+                            description="I enjoy aesthetic UI design, discovering creative interactions, solving challenging problems, and constantly improving my craft."
+                        />
+                    </div>
+
                 </div>
+
             </div>
         </section>
     );
-
 }
+
 export default About;

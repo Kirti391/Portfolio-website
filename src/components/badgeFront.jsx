@@ -1,36 +1,107 @@
-import { FiRotateCw } from "react-icons/fi";
-import BadgeInfo from "./BadgeInfo";
-import photoSrc from "./src/assets/Kirti.jpeg;"
-/**
- * BadgeFront
- * Front face of the conference badge: photo panel + identity info.
- * Purely presentational — flip state and hover lift live on the
- * parent <ProfileCard /> so front/back share one physical card.
- */
-export default function BadgeFront({ photoSrc, name, role }) {
-  return (
-    <div className="badge-face badge-face--front">
-      <div className="badge-face__glare" aria-hidden="true" />
+import { FiBriefcase } from "react-icons/fi";
 
-      <div className="badge-photo">
-        {photoSrc ? (
-          <img
-            src={photoSrc}
-            alt={`Portrait of ${name}`}
-            className="badge-photo__img"
-          />
-        ) : (
-          <div className="badge-photo__placeholder" aria-hidden="true">
-            {name?.charAt(0) ?? "?"}
-          </div>
-        )}
-      </div>
+function BadgeFront({ image }) {
+    return (
+        <div
+            className="
+                absolute
+                inset-0
 
-      <BadgeInfo name={name} role={role} />
+                overflow-hidden
 
-      <span className="badge-flip-hint" aria-hidden="true">
-        <FiRotateCw />
-      </span>
-    </div>
-  );
+                rounded-[30px]
+
+                border
+                border-white/10
+
+                bg-[#111318]/80
+
+                backdrop-blur-xl
+
+                [backface-visibility:hidden]
+            "
+        >
+          <div
+className="
+absolute
+
+inset-0
+
+translate-x-[-120%]
+
+bg-gradient-to-r
+
+from-transparent
+
+via-white/10
+
+to-transparent
+
+transition-all
+
+duration-1000
+
+group-hover:translate-x-[120%]
+"/>
+            {/* Image */}
+
+            <div className="overflow-hidden p-4">
+
+                <img
+                    src={image}
+                    alt="Kirti"
+                    className="
+                        h-[250px]
+                        w-full
+
+                        rounded-2xl
+
+                        object-cover
+
+                        transition-all
+                        duration-700
+
+                        group-hover:scale-105
+                    "
+                />
+
+            </div>
+
+            {/* Content */}
+
+            <div className="px-6">
+
+                <h3
+                    className="
+                        text-2xl
+                        font-bold
+                        text-white
+                    "
+                >
+                    Kirti
+                </h3>
+
+                <p
+                    className="
+                        mt-1
+                        text-indigo-300
+                    "
+                >
+                    Full Stack Developer
+                </p>
+<div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2">
+
+<div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"/>
+
+<span>
+Available for Internships
+</span>
+
+</div>
+
+            </div>
+        </div>
+    );
 }
+
+export default BadgeFront;

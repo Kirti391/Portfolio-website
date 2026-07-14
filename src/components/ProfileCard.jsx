@@ -1,59 +1,103 @@
-import { useState } from "react";
-import MetalClip from "./MetalClip";
-import Lanyard from "./Lanyard";
 import BadgeFront from "./BadgeFront";
 import BadgeBack from "./BadgeBack";
 
-import photo from "../assets/Kirti.jpeg";
-import "./profileCard.css";
+function ProfileCard({ image }) {
+    return (
+        <div
+            className="
+                group
+                relative
+                w-[290px]
+                h-[410px]
+                [perspective:1600px]
+                hover:rotate-1
+                transition-transform duration-500
+            "
+        >
+          <div
+className="
+absolute
 
-/**
- * ProfileCard ("Developer Pass")
- * A conference-style ID badge hanging from a lanyard. Click or press
- * Enter/Space to flip between the professional front and the playful
- * anime-avatar back. Hovering the whole assembly gives it a subtle
- * hanging swing, driven entirely by CSS.
- */
-export default function ProfileCard({
-  name = "Kirti",
-  role = "Full Stack Developer",
-  photoSrc=photo,
-  animeSrc,
-}) {
-  const [isFlipped, setIsFlipped] = useState(false);
+inset-0
 
-  const toggleFlip = () => setIsFlipped((prev) => !prev);
+rounded-[30px]
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      toggleFlip();
-    }
-  };
-console.log("photoSrc:", photoSrc);
-  return (
-    <div className="developer-pass">
-      <MetalClip />
-      <Lanyard />
+bg-gradient-to-br
 
-      <div
-        className="badge-flip"
-        role="button"
-        tabIndex={0}
-        aria-pressed={isFlipped}
-        aria-label={
-          isFlipped
-            ? `Showing back of ${name}'s developer pass. Press Enter to flip to front.`
-            : `Showing front of ${name}'s developer pass. Press Enter to flip to back.`
-        }
-        onClick={toggleFlip}
-        onKeyDown={handleKeyDown}
-      >
-        <div className={`badge-flip__inner ${isFlipped ? "is-flipped" : ""}`}>
-          <BadgeFront photoSrc={photoSrc} name={name} role={role} />
-          <BadgeBack animeSrc={animeSrc} name={name} isVisible={isFlipped} />
+from-indigo-500/10
+
+to-cyan-500/10
+
+opacity-0
+
+transition
+
+duration-700
+
+group-hover:opacity-100
+"/>
+            {/* Glow */}
+
+            <div
+                className="
+                    absolute
+                    -inset-2
+                    rounded-[34px]
+                    bg-gradient-to-br
+                    from-indigo-500/20
+                    via-violet-500/10
+                    to-cyan-500/20
+                    blur-3xl
+                    opacity-0
+                    transition-all
+                    duration-700
+                    group-hover:opacity-100
+                "
+            />
+
+            {/* Card */}
+<div
+className="
+absolute
+left-1/2
+top-1/2
+-z-10
+
+h-72
+w-72
+
+-translate-x-1/2
+-translate-y-1/2
+
+rounded-full
+
+bg-indigo-500/15
+
+blur-[90px]
+"/>
+            <div
+                className="
+                    relative
+                    h-full
+                    w-full
+
+                    transition-all
+                    duration-700
+
+                    [transform-style:preserve-3d]
+
+                    group-hover:rotate-y-180
+
+                    group-hover:-translate-y-3
+                "
+            >
+                <BadgeFront image={image} />
+
+                <BadgeBack />
+
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
+
+export default ProfileCard;

@@ -1,64 +1,116 @@
-import { FaReact, FaNodeJs } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb } from "react-icons/si";
+import avatar from "./assets/avatar.png";
 
-const STACK = [
-  { label: "React", icon: FaReact },
-  { label: "Node", icon: FaNodeJs },
-  { label: "Tailwind", icon: SiTailwindcss },
-  { label: "MongoDB", icon: SiMongodb },
-];
-
-/**
- * BadgeBack
- * Back face of the badge: floating anime avatar, a speech bubble
- * that pops in after the flip completes, a short quote, and a
- * row of tech-stack pills.
- */
-export default function BadgeBack({ animeSrc, name = "Kirti", isVisible }) {
-  return (
-    <div className="badge-face badge-face--back">
-      <div className="badge-back__glow" aria-hidden="true" />
-
-      <div className="badge-back__avatar-wrap">
-        <div className="badge-back__avatar">
-          {animeSrc ? (
-            <img
-              src={animeSrc}
-              alt={`Anime-style avatar of ${name}`}
-              className="badge-back__avatar-img"
-            />
-          ) : (
-            <div className="badge-back__avatar-placeholder" aria-hidden="true">
-              {name.charAt(0)}
-            </div>
-          )}
-        </div>
-
+function BadgeBack() {
+    return (
         <div
-          className={`speech-bubble ${isVisible ? "speech-bubble--pop" : ""}`}
-          role="status"
+            className="
+                absolute
+                inset-0
+
+                flex
+
+                flex-col
+
+                items-center
+
+                justify-center
+
+                rounded-[30px]
+
+                border
+                border-white/10
+
+                bg-[#111318]/90
+
+                backdrop-blur-xl
+
+                rotate-y-180
+
+                [backface-visibility:hidden]
+            "
         >
-          Hi 👋
+            {/* Glow */}
+
+            <div
+                className="
+                    absolute
+
+                    h-52
+                    w-52
+
+                    rounded-full
+
+                    bg-indigo-500/20
+
+                    blur-3xl
+                "
+            />
+
+            {/* Avatar */}
+
+            <img
+                src={avatar}
+                alt="Avatar"
+                className="
+                    relative
+
+                    z-10
+
+                    h-44
+                    w-44
+
+                    animate-float
+
+                    rounded-full
+
+                    object-cover
+                "
+            />
+
+            {/* Bubble */}
+
+            <div
+                className="
+                    mt-8
+
+                    rounded-full
+
+                    bg-white
+
+                    px-5
+
+                    py-2
+
+                    text-sm
+
+                    font-medium
+
+                    text-black
+                "
+            >
+                Hi 👋
+            </div>
+
+            <h3
+                className="
+                    mt-8
+
+                    text-2xl
+
+                    font-bold
+
+                    text-white
+                "
+            >
+                Kirti
+            </h3>
+
+            <p className="mt-2 text-indigo-300">
+                Learning • Building • Growing
+            </p>
+
         </div>
-      </div>
-
-      <p className="badge-back__name">{name}</p>
-      <p className="badge-back__quote">
-        Learning.
-        <br />
-        Building.
-        <br />
-        Growing.
-      </p>
-
-      <ul className="tech-pills" aria-label="Core tech stack">
-        {STACK.map(({ label, icon: Icon }) => (
-          <li key={label} className="tech-pill">
-            <Icon aria-hidden="true" />
-            {label}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    );
 }
+
+export default BadgeBack;
