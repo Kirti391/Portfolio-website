@@ -1,5 +1,5 @@
 import Button from "./button";
-import { FiDownload, FiMail , FiGithub, FiLinkedin,FiBriefcase } from "react-icons/fi";
+import { FiDownload, FiMail, FiGithub, FiLinkedin, FiBriefcase } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { SiLeetcode } from "react-icons/si";
 import SocialButton from "./socialButton";
@@ -27,47 +27,47 @@ function Hero() {
     //     clearInterval(interval);
     //   };
     // }, []);
-const typingSpeed = 100;
-const deletingSpeed = 50;
-const pauseTime = 1000; 
-useEffect(() => {
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 1000;
+    useEffect(() => {
 
-    let timeout;
+        let timeout;
 
-    if (!isDeleting && charIndex < roles[currentRole].length) {
+        if (!isDeleting && charIndex < roles[currentRole].length) {
 
-        timeout = setTimeout(() => {
-            setCharIndex(prev => prev + 1);
-        }, typingSpeed);
+            timeout = setTimeout(() => {
+                setCharIndex(prev => prev + 1);
+            }, typingSpeed);
 
-    }
+        }
 
-    else if (!isDeleting && charIndex === roles[currentRole].length) {
+        else if (!isDeleting && charIndex === roles[currentRole].length) {
 
-        timeout = setTimeout(() => {
-            setIsDeleting(true);
-        }, pauseTime);
+            timeout = setTimeout(() => {
+                setIsDeleting(true);
+            }, pauseTime);
 
-    }
+        }
 
-    else if (isDeleting && charIndex > 0) {
+        else if (isDeleting && charIndex > 0) {
 
-        timeout = setTimeout(() => {
-            setCharIndex(prev => prev - 1);
-        }, deletingSpeed);
+            timeout = setTimeout(() => {
+                setCharIndex(prev => prev - 1);
+            }, deletingSpeed);
 
-    }
+        }
 
-    else {
+        else {
 
-        setIsDeleting(false);
-        setCurrentRole(prev => (prev + 1) % roles.length);
+            setIsDeleting(false);
+            setCurrentRole(prev => (prev + 1) % roles.length);
 
-    }
+        }
 
-    return () => clearTimeout(timeout);
+        return () => clearTimeout(timeout);
 
-}, [charIndex, isDeleting, currentRole]);
+    }, [charIndex, isDeleting, currentRole]);
 
     // useEffect(()=>{
     //     const cursorInterval=setInterval(() => {
@@ -88,65 +88,65 @@ useEffect(() => {
             {/* Hero Content */}
             <div className="relative z-10 max-w-3xl flex flex-col items-center text-center ">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-indigo-400/20 bg-indigo-500/10 backdrop-blur-md px-4 py-2 shadow-lg shadow-indigo-500/5 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400/30 hover:bg-indigo-500/15 ">
-    <FiBriefcase className="text-indigo-400 text-lg" />
-    <span className="text-sm font-medium tracking-wide text-gray-300">
-        Open to Internships
-    </span>
-</div>
+                    <FiBriefcase className="text-indigo-400 text-lg" />
+                    <span className="text-sm font-medium tracking-wide text-gray-300">
+                        Open to Internships
+                    </span>
+                </div>
 
                 <h1 className="text-5xl font-bold tracking-tight text-[#F2F3F5] md:text-7xl mb-3">Hi, I'm Kirti</h1>
                 <div className="mt-4 flex flex-col items-center justify-center">
-                   <p className="text-md md:text-2xl font-medium text-gray-400">
-    I'm a
-</p>
-                      {/* <span className="text-gray-300"> */}
-        {/* I'm a&nbsp;
+                    <p className="text-md md:text-2xl font-medium text-gray-400">
+                        I'm a
+                    </p>
+                    {/* <span className="text-gray-300"> */}
+                    {/* I'm a&nbsp;
     </span> */}
-  <div className="h-20 flex items-center">
-<h2 className="mt-6 flex items-center justify-center text-5xl font-bold md:text-6xl">
-  
-    <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-        {roles[currentRole].slice(0, charIndex)}
-    </span>
+                    <div className="h-20 flex items-center">
+                        <h2 className="mt-6 flex items-center justify-center text-5xl font-bold md:text-6xl">
 
-    <span className="ml-1 h-[0.8em] w-[2px] bg-white animate-blink rounded-full"></span>
-</h2></div>
+                            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                                {roles[currentRole].slice(0, charIndex)}
+                            </span>
+
+                            <span className="ml-1 h-[0.8em] w-[2px] bg-white animate-blink rounded-full"></span>
+                        </h2></div>
                 </div>
                 <p className="mt-5 max-w-2xl text-lg text-gray-300 leading-9"> I build modern, responsive, and interactive web applications with
                     clean code, thoughtful user experiences, and a passion for learning
                     new technologies.</p>
                 <div className="flex items-center gap-4 mt-6 ">
-                    <Button text="Download Resume"  href={resume} download={true} icon={<FiDownload />} variant="primary" />
+                    <Button text="Download Resume" href={resume} download={true} icon={<FiDownload />} variant="primary" />
                     <Button text="Contact Me" icon={<FiMail />} variant="secondary" /></div>
-<div className="mt-8 flex items-center gap-5 ">
-  <SocialButton
-    icon={<FiGithub size={20} />}
-    link="https://github.com/Kirti391"
-  />
+                <div className="mt-8 flex items-center gap-5 ">
+                    <SocialButton
+                        icon={<FiGithub size={20} />}
+                        link="https://github.com/Kirti391"
+                    />
 
-  <SocialButton
-    icon={<FiLinkedin size={20} />}
-    link="https://linkedin.com/in/Kirti2005"
-  />
+                    <SocialButton
+                        icon={<FiLinkedin size={20} />}
+                        link="https://linkedin.com/in/Kirti2005"
+                    />
 
-  <SocialButton
-    icon={<SiLeetcode size={20} />}
-    link="https://leetcode.com/Kirti2005"
-  />
+                    <SocialButton
+                        icon={<SiLeetcode size={20} />}
+                        link="https://leetcode.com/Kirti2005"
+                    />
 
-  <SocialButton
-    icon={<FiMail size={20} />}
-    link="mailto:jainwarkirti8@gmail.com"
-  />
-</div>
+                    <SocialButton
+                        icon={<FiMail size={20} />}
+                        link="mailto:jainwarkirti8@gmail.com"
+                    />
+                </div>
 
-<div className="absolute  bottom-24 left-1/2 -translate-x-1/2">
-<a href="#about" className="flex-col items-center text-gray-400 transition-all duration-300 hover:text-white">
-    <FiChevronDown size={28} className="animate-bounce" />
-    {/* <p className="mt-2 text-sm tracking-widest uppercase">Scroll</p> */}
-</a>
+                <div className="absolute  bottom-24 left-1/2 -translate-x-1/2">
+                    <a href="#about" className="flex-col items-center text-gray-400 transition-all duration-300 hover:text-white">
+                        <FiChevronDown size={28} className="animate-bounce" />
+                        {/* <p className="mt-2 text-sm tracking-widest uppercase">Scroll</p> */}
+                    </a>
 
-</div>
+                </div>
 
             </div>
 
