@@ -1,78 +1,83 @@
 import AboutHeading from "./AboutHeading";
-import AboutBackground from "./AboutBackground";
+import BackgroundEffects from "./backgroundEffects";
 import ProfileCard from "./ProfileCard";
-import InfoCard from "./infoCard";
-import "../styles/about.css";
-import profile from "../assets/Kirti.jpeg";
-
-import {
-    FiUser,
-    FiTarget,
-    FiBriefcase,
-    FiCoffee,
-} from "react-icons/fi";
+import InfoCard from "./InfoCard";
+import ResumeButton from "./ResumeButton";
 
 function About() {
-    return (
-        <section
-            id="about"
-            className="relative overflow-hidden px-6 py-32 md:px-12 lg:px-24"
+  return (
+    <section
+      id="about"
+      className="relative overflow-hidden py-28 px-6"
+    >
+      <BackgroundEffects />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+
+        <AboutHeading />
+
+        <div
+          className="
+            mt-20
+            grid
+            grid-cols-1
+            lg:grid-cols-[1fr_430px_1fr]
+            gap-10
+            items-center
+          "
         >
-            <AboutBackground />
 
-            <div className="relative z-10 mx-auto max-w-7xl">
+          {/* Left */}
 
-                <AboutHeading
-                    title="About Me"
-                    subtitle="Get to know me beyond the code."
-                />
+          <div className="space-y-10">
 
-                {/* Profile Card */}
-                <div className="mt-20 flex justify-center">
-                    <ProfileCard image={profile} />
-                </div>
+            <InfoCard
+              title="Who I Am"
+              description="Content will come here..."
+            />
 
-                {/* Information Grid */}
+            <InfoCard
+              title="Looking For"
+              description="Content will come here..."
+            />
 
-                <div className="mt-20 grid gap-8 lg:grid-cols-2 group-hover:scale-[1.02]">
+          </div>
 
-                    <div className="fade-up delay-1 lg:-translate-y-6">
-                        <InfoCard
-                            icon={<FiUser />}
-                            title="Who I Am"
-                            description="I'm a Computer Science student passionate about crafting modern web experiences through clean design, interactive interfaces, and scalable code."
-                        />
-                    </div>
+          {/* Center */}
 
-                    <div className="fade-up delay-2 lg:translate-y-6">
-                        <InfoCard
-                            icon={<FiTarget />}
-                            title="Current Focus"
-                            description="Building full-stack applications with React, exploring backend development, and continuously strengthening my DSA skills."
-                        />
-                    </div>
+          <div className="flex justify-center">
 
-                 <div className="fade-up delay-3 lg:translate-y-6">
-                        <InfoCard
-                            icon={<FiBriefcase />}
-                            title="Looking For"
-                            description="Seeking frontend and full-stack internship opportunities where I can learn from experienced developers and contribute to impactful products."
-                        />
-                    </div>
+            <ProfileCard />
 
-                 <div className="fade-up delay-4 lg:-translate-y-6">
-                        <InfoCard
-                            icon={<FiCoffee />}
-                            title="Beyond Coding"
-                            description="I enjoy aesthetic UI design, discovering creative interactions, solving challenging problems, and constantly improving my craft."
-                        />
-                    </div>
+          </div>
 
-                </div>
+          {/* Right */}
 
-            </div>
-        </section>
-    );
+          <div className="space-y-10">
+
+            <InfoCard
+              title="Current Focus"
+              description="Content will come here..."
+            />
+
+            <InfoCard
+              title="Beyond Coding"
+              description="Content will come here..."
+            />
+
+          </div>
+
+        </div>
+
+        <div className="mt-20 flex justify-center">
+
+          <ResumeButton />
+
+        </div>
+
+      </div>
+    </section>
+  );
 }
 
 export default About;

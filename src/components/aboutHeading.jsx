@@ -1,52 +1,62 @@
-function AboutHeading({ title, subtitle }) {
-    return (
-        <div className="flex flex-col items-center text-center">
+function AboutHeading() {
+  return (
+    <div className="text-center">
 
-            <span
-                className="
-                mb-4
-                rounded-full
-                border
-                border-indigo-400/20
-                bg-indigo-500/10
-                px-4
-                py-2
-                text-sm
-                tracking-[0.2em]
-                uppercase
-                text-indigo-300
-            "
-            >
-                {title}
-            </span>
+      <div
+        className="
+          inline-flex
+          items-center
+          rounded-full
+          border
+          border-white/10
+          bg-white/5
+          px-6
+          py-2
+          text-sm
+          uppercase
+          tracking-[0.35em]
+          text-gray-300
+        "
+      >
+        Get To Know Me
+      </div>
 
-            <h2
-                className="
-                text-5xl
-                font-bold
-                tracking-tight
-                text-white
-            "
-            >
-                Designing Experiences,
-                <br />
-                Not Just Interfaces.
-            </h2>
+      <h2
+        className="
+          mt-8
+          text-6xl
+          md:text-7xl
+          font-black
+          tracking-tight
+        "
+      >
+        <span className="text-white">
+          About
+        </span>
 
-            <p
-                className="
-                mt-6
-                max-w-2xl
-                text-lg
-                leading-8
-                text-gray-400
-            "
-            >
-                {subtitle}
-            </p>
+        <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+          {" "}Me
+        </span>
 
-        </div>
-    );
+      </h2>
+
+      <p
+        className="
+          mt-6
+          max-w-2xl
+          mx-auto
+          text-lg
+          leading-8
+          text-gray-400
+        "
+      >
+        Curious mind. Passionate developer.
+        Lifelong learner. Let's build something
+        incredible together.
+      </p>
+
+    </div>
+  );
 }
 
 export default AboutHeading;
