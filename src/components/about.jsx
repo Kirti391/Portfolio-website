@@ -3,6 +3,7 @@ import BackgroundEffects from "./backgroundEffects";
 import ProfileCard from "./ProfileCard";
 import InfoCard from "./InfoCard";
 import ResumeButton from "./ResumeButton";
+import ConnectorLines from "./ConnectorLines";
 
 function About() {
   return (
@@ -16,64 +17,72 @@ function About() {
 
         <AboutHeading />
 
-        <div
-          className="
-            mt-20
+<div className="relative mt-20">
+
+    <ConnectorLines />
+
+    <div
+        className="
+            relative
+            z-10
             grid
             grid-cols-1
-            lg:grid-cols-[1fr_430px_1fr]
+            lg:grid-cols-[1fr_380px_1fr]
             gap-10
             items-center
-          "
-        >
+        "
+    >
 
-          {/* Left */}
+        {/* Left */}
 
-          <div className="space-y-10">
+        <div className="space-y-10">
 
             <InfoCard
-              title="Who I Am"
-              description="Content will come here..."
+                title="Who I Am"
+                description="..."
             />
 
             <InfoCard
-              title="Looking For"
-              description="Content will come here..."
+                title="Looking For"
+                description="..."
             />
 
-          </div>
+        </div>
 
-          {/* Center */}
+        {/* Center */}
 
-          <div className="flex justify-center">
+        <div className="flex justify-center">
 
             <ProfileCard />
 
-          </div>
+        </div>
 
-          {/* Right */}
+        {/* Right */}
 
-          <div className="space-y-10">
+        <div className="space-y-10">
 
             <InfoCard
-              title="Current Focus"
-              description="Content will come here..."
+                title="Current Focus"
+                description="..."
             />
 
             <InfoCard
-              title="Beyond Coding"
-              description="Content will come here..."
+                title="Beyond Coding"
+                description="..."
             />
 
-          </div>
-
         </div>
 
-        <div className="mt-20 flex justify-center">
+    </div>
 
-          <ResumeButton />
+</div>
 
-        </div>
+<div className="mt-20 flex justify-center">
+    <ResumeButton />
+</div>
+
+        
+
 
       </div>
     </section>

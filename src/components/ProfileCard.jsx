@@ -34,7 +34,7 @@ function ProfileCard() {
 
   return (
     <div
-      className="group relative mx-auto h-[620px] w-[430px] cursor-pointer [perspective:1800px]"
+      className="group relative mx-auto h-[560px] w-[350px] cursor-pointer [perspective:1800px]"
       onClick={() => setFlipped(!flipped)}
     >
       {/* Flip Container */}
@@ -95,8 +95,7 @@ function ProfileCard() {
               className="
                 relative
                 z-10
-                h-72
-                w-72
+               h-60 w-60
                 rounded-full
                 border-[6px]
                 border-[#111827]

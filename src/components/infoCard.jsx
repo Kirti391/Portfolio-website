@@ -1,30 +1,28 @@
 import { HiOutlineUser } from "react-icons/hi2";
 
-function InfoCard({
-    icon = <HiOutlineUser />,
-    title,
-    description,
-    accent = "from-violet-500 to-cyan-400",
-}) {
+function InfoCard({ title, description, icon }) {
     return (
         <div
-            className="
-                group
-                relative
-                overflow-hidden
-                rounded-3xl
-                border
-                border-white/10
-                bg-white/[0.03]
-                backdrop-blur-xl
-                p-8
-                transition-all
-                duration-500
-                hover:-translate-y-2
-                hover:border-violet-400/30
-            "
+           className="
+group
+relative
+min-h-[220px]
+overflow-hidden
+rounded-3xl
+border
+border-white/10
+bg-[#111827]/60
+backdrop-blur-xl
+px-7
+py-6
+transition-all
+duration-500
+hover:-translate-y-2
+hover:border-cyan-400/40
+hover:shadow-[0_20px_50px_rgba(56,189,248,0.15)]
+"
         >
-            {/* Glow */}
+            {/* Hover Glow */}
             <div
                 className="
                     absolute
@@ -34,40 +32,69 @@ function InfoCard({
                     duration-500
                     group-hover:opacity-100
                     bg-gradient-to-br
-                    from-violet-500/10
-                    to-cyan-500/5
+                    from-cyan-500/5
+                    via-transparent
+                    to-violet-500/5
                 "
             />
 
+            {/* Content */}
             <div className="relative z-10">
 
+                {/* Icon */}
+                {icon && (
+                    <div
+                        className="
+                            mb-4
+                            flex
+                           h-12 w-12
+                            items-center
+                            justify-center
+                            rounded-2xl
+                            bg-gradient-to-br
+                            from-cyan-500/20
+                            to-violet-500/20
+                           text-xl
+                            text-cyan-300
+                        "
+                    >
+                        {icon}
+                    </div>
+                )}
+
+                {/* Accent Bar */}
                 <div
                     className="
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
-                        rounded-2xl
-                        bg-gradient-to-br
-                        from-violet-500/20
-                        to-cyan-500/20
-                        text-3xl
+                        mb-3
+                        h-1
+                        w-14
+                        rounded-full
+                        bg-gradient-to-r
+                        from-cyan-400
+                        to-violet-400
+                    "
+                />
+
+                {/* Title */}
+                <h3
+                    className="
+                        text-xl
+                        font-semibold
+                        tracking-tight
                         text-white
                     "
                 >
-                    {icon}
-                </div>
-
-                <h3 className="mt-6 text-3xl font-bold text-white">
                     {title}
                 </h3>
 
-                <div
-                    className={`mt-3 h-1 w-16 rounded-full bg-gradient-to-r ${accent}`}
-                />
-
-                <p className="mt-6 text-gray-400 leading-8">
+                {/* Description */}
+                <p
+                    className="
+                        mt-3
+                        leading-7 text-[15px]
+                        text-gray-400
+                    "
+                >
                     {description}
                 </p>
 
