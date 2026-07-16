@@ -31,11 +31,11 @@ function AboutHeading() {
         "
       >
         <span className="text-white">
-          About
+          About 
         </span>
 
         <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
-          {" "}Me
+          {"  "}Me
         </span>
 
       </h2>

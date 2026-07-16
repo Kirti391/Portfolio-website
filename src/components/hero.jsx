@@ -112,7 +112,7 @@ function Hero() {
                             <span className="ml-1 h-[0.8em] w-[2px] bg-white animate-blink rounded-full"></span>
                         </h2></div>
                 </div>
-                <p className="mt-5 max-w-2xl text-lg text-gray-300 leading-9"> I build modern, responsive, and interactive web applications with
+                <p className="mt-5 max-w-2xl text-lg text-gray-400 leading-9"> I build modern, responsive, and interactive web applications with
                     clean code, thoughtful user experiences, and a passion for learning
                     new technologies.</p>
                 <div className="flex items-center gap-4 mt-6 ">
