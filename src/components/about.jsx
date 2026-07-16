@@ -7,9 +7,7 @@ import ConnectorLines from "./ConnectorLines";
 
 function About() {
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden py-28 px-6"
+    <section id="about" className="relative py-6 px-6"
     >
       <BackgroundEffects />
 

@@ -1,7 +1,8 @@
 // import './App.css'
 import Navbar from './components/navbar'
 import Hero from './components/hero'
-import About from './components/about'
+// import About from './components/about'
+import About from './components/about/about'
 function App() {
 
 
@@ -11,6 +12,8 @@ function App() {
      <Navbar />
      <Hero />
      <About/>
+     {/* <About/> */}
+
      </div>
     // </>
   )
