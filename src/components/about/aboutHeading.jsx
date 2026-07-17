@@ -8,8 +8,7 @@ return(
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">{" "}Me</span>
         </h2>
         <p className="mt-6 max-w-2xl text-gray-400 mx-auto text-lg leading-8 ">Curious mind. Passionate developer.
-        Lifelong learner. Let's build something
-        incredible together.</p>
+        Lifelong learner. </p>
         
     </div>
 )

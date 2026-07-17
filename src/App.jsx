@@ -3,6 +3,7 @@ import Navbar from './components/navbar'
 import Hero from './components/hero'
 // import About from './components/about'
 import About from './components/about/about'
+import Footer from './components/footer'
 function App() {
 
 
@@ -13,6 +14,7 @@ function App() {
      <Hero />
      <About/>
      {/* <About/> */}
+     <Footer/>
 
      </div>
     // </>

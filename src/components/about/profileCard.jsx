@@ -20,7 +20,7 @@ function ProfileCard() {
                     </div>
                     <h2 className="mt-6 text-center text-3xl font-bold">Kirti</h2>
                     <p className="mt-2 text-center text-lg text-indigo-400">Full Stack Developer</p>
-                    <p className="mt-2.5 text-center text-gray-300">Computer Science & Engineering {<br></br>}UIET Kurukshetra</p>
+                    <p className="mt-2.5 text-center text-gray-300">Computer Science & Engineering {<br/>}UIET Kurukshetra</p>
 
                     <a href="#projects" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-cyan-300  bg-cyan-500/10 rounded-xl 
                 border border-cyan-400/30 py-1 px-2.5 transition-all hover:bg-cyan-500/20 duration-300 hover:-translate-y-1">View Projects</a>
