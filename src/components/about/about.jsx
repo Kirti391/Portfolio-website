@@ -65,9 +65,23 @@ import ProfileCard from "./profileCard";
 function About() {
   return (
     <section id="about" className="relative px-6 py-8">
+    <div
+  className="absolute inset-0 opacity-[0.03]"
+  style={{
+    backgroundImage: `
+      linear-gradient(to right, white 1px, transparent 1px),
+      linear-gradient(to bottom, white 1px, transparent 1px)
+    `,
+    backgroundSize: "60px 60px",
+  }}
+/>
+
+
+
+<div className="absolute rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
       <AboutHeading />
 
-      <div className="relative mr-20 mt-14 flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-20">
+      <div className="relative mr-20 mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-20">
 
         {/* Left - Profile Card */}
         <div className="shrink-0 ">

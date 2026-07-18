@@ -28,7 +28,7 @@ function ProfileCard() {
                 </div>
 
                 {/* Back profile card */}
-                <div className="absolute inset-0 rotate-y-180 backface-hidden rounded-2xl border-2 border-cyan-400/40 bg-gradient-to-b from-[#17172B] via-[#111827] to-[#081018] ">
+                <div className="absolute inset-0 rotate-y-180 backface-hidden rounded-2xl border-1 border-cyan-400/40 bg-gradient-to-b from-[#17172B] via-[#111827] to-[#081018] ">
 
                     <div className="mt-10 flex justify-center relative left-1/2 -translate-x-1/2 h-42 w-42 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-5xl">
 
