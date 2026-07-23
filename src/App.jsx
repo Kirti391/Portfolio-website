@@ -1,9 +1,11 @@
 // import './App.css'
 import Navbar from './components/navbar'
 import Hero from './components/hero'
-// import About from './components/about'
 import About from './components/about/about'
+import Skills from './components/skills/skills'
 import Footer from './components/footer'
+import Contact from './components/contact/contact'
+
 function App() {
 
 
@@ -13,7 +15,8 @@ function App() {
      <Navbar />
      <Hero />
      <About/>
-     {/* <About/> */}
+     <Skills/>
+     <Contact/>
      <Footer/>
 
      </div>
