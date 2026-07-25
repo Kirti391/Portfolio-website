@@ -2,7 +2,7 @@ import ContactForm from "./contactForm";
 import ContactInfo from "./contactInfo";
 function Contact() {
     return (
-        <section id='contact' className="relative py-28 px-6 md:px-16 lg:px-28 overflow-hidden">
+        <section id='contact' className="relative py-28 px-6 md:px-16 lg:px-40 overflow-hidden">
             <header className="text-center max-w-3xl mx-auto">
                 <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
                     <span className="text-white">Get</span>
