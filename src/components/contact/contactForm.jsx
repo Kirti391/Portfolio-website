@@ -1,21 +1,58 @@
 import { LuArrowRight } from "react-icons/lu";
-// import { useState } from "react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 function ContactForm() {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   message: "",
-  // });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  // function handleChange(event) {
-  //   const { name, value } = event.target;
+  const [loading, setLoading] = useState(false);
 
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // }
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setLoading(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+     
+toast.success("Message sent successfully!");
+    } catch (error) {
+      console.error(error);
+     toast.error("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="rounded-3xl border border-slate-800 bg-[#0B1220] p-8">
@@ -31,7 +68,7 @@ function ContactForm() {
       </div>
 
       {/* Form */}
-      <div className="mt-8 space-y-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
 
         {/* Name & Email */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -49,7 +86,10 @@ function ContactForm() {
               type="text"
               id="name"
               name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="John Doe"
+              required
               className="w-full rounded-xl border border-slate-700 bg-[#111827] px-4 py-2.5 text-white placeholder:text-slate-500 transition-all duration-300 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -67,7 +107,10 @@ function ContactForm() {
               type="email"
               id="email"
               name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="john@example.com"
+              required
               className="w-full rounded-xl border border-slate-700 bg-[#111827] px-4 py-2.5 text-white placeholder:text-slate-500 transition-all duration-300 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
             />
           </div>
@@ -86,7 +129,10 @@ function ContactForm() {
           <textarea
             id="message"
             name="message"
+            value={formData.message}
+            onChange={handleChange}
             placeholder="Tell me about your project..."
+            required
             className="min-h-32 w-full resize-none rounded-xl border border-slate-700 bg-[#111827] px-4 py-3 text-white placeholder:text-slate-500 transition-all duration-300 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
           />
         </div>
@@ -95,14 +141,18 @@ function ContactForm() {
         <div className="flex justify-center pt-2">
           <button
             type="submit"
-            className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(99,102,241,0.35)]"
+            disabled={loading}
+            className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(99,102,241,0.35)] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Send Message
-            <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            {loading ? "Sending..." : "Send Message"}
+
+            {!loading && (
+              <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            )}
           </button>
         </div>
 
-      </div>
+      </form>
     </div>
   );
 }
