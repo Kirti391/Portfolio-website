@@ -35,3 +35,29 @@ html {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+/* @keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-1{
+    animation:float 4s ease-in-out infinite;
+}
+
+.float-2{
+    animation:float 5s ease-in-out infinite;
+}
+
+.float-3{
+    animation:float 6s ease-in-out infinite;
+}
+
+.float-4{
+    animation:float 7s ease-in-out infinite;
+} */

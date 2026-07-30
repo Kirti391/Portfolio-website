@@ -1,0 +1,40 @@
+/* Slow, expensive-feeling float — small amplitude, long duration */
+@keyframes skill-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+.skill-float-0 { animation: skill-float 7.2s ease-in-out infinite; }
+.skill-float-1 { animation: skill-float 8.4s ease-in-out infinite; animation-delay: -1.2s; }
+.skill-float-2 { animation: skill-float 6.6s ease-in-out infinite; animation-delay: -3.1s; }
+.skill-float-3 { animation: skill-float 9s ease-in-out infinite; animation-delay: -0.6s; }
+.skill-float-4 { animation: skill-float 7.8s ease-in-out infinite; animation-delay: -2.4s; }
+.skill-float-5 { animation: skill-float 8.1s ease-in-out infinite; animation-delay: -4s; }
+
+/* Center node — subtle animated pulse, not a throbbing blob */
+@keyframes center-pulse {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.08); }
+}
+.center-pulse {
+  animation: center-pulse 4.5s ease-in-out infinite;
+}
+
+/* Background star field twinkle */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.75; }
+}
+.star-twinkle {
+  animation: star-twinkle 5s ease-in-out infinite;
+}
+
+/* Connector line draw-in on mount */
+@keyframes line-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.line-draw {
+  stroke-dasharray: 1;
+  animation: line-draw 1.8s ease-out forwards;
+}

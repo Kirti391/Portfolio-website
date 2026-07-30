@@ -1,23 +1,38 @@
-import skillsData from "./skillsData";
-function Skills() {
+import React from "react";
+import SkillsCanvas from "./SkillsCanvas";
+import "./skills.css";
 
-    return(
-        <section id="skills" className="mt-32">
+export default function Skills() {
+  return (
+    <section
+      id="skills"
+      className="relative py-24 sm:py-32 bg-[#030712] overflow-hidden"
+    >
+      {/* ambient background glow, consistent with the rest of the site */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-cyan-500/10 blur-3xl" />
+      </div>
 
-         <div >
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-white">Skills</h2>
-            <p className="text-lg mt-3 max-w-2xl mx-auto leading-8 text-gray-400 text-center">
-            Technologies, tools, and concepts I use to
-            build reliable and scalable applications.
-            </p>
-         </div>
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="text-xs font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+            Tech Stack
+          </span>
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+            A living{" "}
+            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+              constellation
+            </span>{" "}
+            of tools
+          </h2>
+          <p className="mt-4 text-slate-400 max-w-xl mx-auto">
+            Every technology I reach for, mapped around the way I actually
+            work — hover a star to see it connect.
+          </p>
+        </div>
 
-         <div className="mt-20">
-            {/* categories container  */}
-
-         </div>
-
-        </section>
-    )
+        <SkillsCanvas />
+      </div>
+    </section>
+  );
 }
-export default Skills;

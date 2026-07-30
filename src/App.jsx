@@ -2,7 +2,7 @@
 import Navbar from './components/navbar'
 import Hero from './components/hero'
 import About from './components/about/about'
-import Skills from './components/skills/skills'
+import Skills from './components/skills/Skills'
 import Footer from './components/footer'
 import Contact from './components/contact/contact'
 
