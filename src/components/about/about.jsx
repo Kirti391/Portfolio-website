@@ -81,7 +81,7 @@ function About() {
 <div className="absolute rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
       <AboutHeading />
 
-      <div className="relative mr-20 mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-20">
+      <div className="relative mx-auto mt-8 flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-20">
 
         {/* Left - Profile Card */}
         <div className="shrink-0 ">
