@@ -127,8 +127,10 @@ export default function SkillsCanvas() {
                 x2={skill.x}
                 y2={skill.y}
                 stroke="url(#lineGradient)"
-                strokeWidth={active ? 2 : 1}
-                opacity={active ? 0.9 : activeId ? 0.08 : 0.25}
+                // strokeWidth={active ? 2 : 1}
+                opacity={active ? 1.0 : activeId ? 0.08 : 0.25}
+                strokeWidth={active ? 0.35 : 0.08}
+                // opacity={active ? 0.95 : activeId ? 0.05 : 0.08}/
                 className="transition-all duration-500 ease-out"
               />
             );
@@ -148,7 +150,9 @@ export default function SkillsCanvas() {
                 x2={to.x}
                 y2={to.y}
                 stroke={accent.stroke}
-                strokeWidth={active ? 1.8 : 0.8}
+                // strokeWidth={active ? 1.8 : 0.8}
+                strokeWidth={active ? 0.3 : 0.08}
+                // opacity={active ? 0.85 : activeId ? 0.08 : 0.3}
                 opacity={active ? 0.85 : activeId ? 0.08 : 0.3}
                 className="transition-all duration-500 ease-out"
               />
@@ -181,7 +185,7 @@ export default function SkillsCanvas() {
 />
           <span className="relative w-24 h-24 rounded-full flex flex-col items-center justify-center bg-[#0B1220]/90 backdrop-blur-xl border border-slate-700 shadow-[0_0_40px_rgba(139,92,246,0.35)]">
             <span className="text-2xl font-bold bg-gradient-to-br from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-              KS
+              {"</>"}
             </span>
             <span className="text-[10px] text-slate-400 tracking-wide mt-0.5">
               Developer
