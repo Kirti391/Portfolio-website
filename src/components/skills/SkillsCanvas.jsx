@@ -1,60 +1,99 @@
-import React, { useMemo, useState } from "react";
-import SkillNode from "./SkillNode";
-import { SKILLS, CONNECTIONS, CENTER, CATEGORY_ACCENT } from "./skillsData";
+"use client";
 
-// Deterministic pseudo-random star field (no Math.random so layout
-// never shifts between renders/SSR passes)
-const STARS = Array.from({ length: 42 }).map((_, i) => {
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import SkillNode from "./SkillNode";
+import {
+  SKILLS,
+  CONNECTIONS,
+  CENTER,
+  CATEGORY_ACCENT,
+  DESIGN_WIDTH,
+  DESIGN_HEIGHT,
+} from "./skillsData";
+
+// Deterministic pseudo-random star field, in design-canvas pixels
+const STARS = Array.from({ length: 46 }).map((_, i) => {
   const seed = i * 12.9898;
   const frac = (Math.sin(seed) * 43758.5453) % 1;
   const frac2 = (Math.sin(seed * 1.7) * 12543.233) % 1;
   return {
     id: i,
-    x: Math.abs(frac) * 100,
-    y: Math.abs(frac2) * 100,
+    x: Math.abs(frac) * DESIGN_WIDTH,
+    y: Math.abs(frac2) * DESIGN_HEIGHT,
     size: 1 + (i % 3),
     variant: i % 5,
   };
 });
 
 export default function SkillsCanvas() {
+  const wrapperRef = useRef(null);
+  const [scale, setScale] = useState(1);
   const [activeId, setActiveId] = useState(null);
 
-  // id -> skill lookup for connector line coordinates
+  // Measure the wrapper's actual rendered width and derive a scale
+  // factor for the fixed design canvas. This is the only thing that
+  // makes the layout responsive — no CSS aspect-ratio, no percentage
+  // widths on the canvas itself, nothing that can silently fail.
+  useLayoutEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    const computeScale = () => {
+      const width = el.offsetWidth;
+      if (width > 0) {
+        setScale(Math.min(1, width / DESIGN_WIDTH));
+      }
+    };
+
+    computeScale();
+
+    const ro = new ResizeObserver(computeScale);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const byId = useMemo(() => {
     const map = {};
     SKILLS.forEach((s) => (map[s.id] = s));
     return map;
   }, []);
 
-  const isLineActive = (a, b) =>
-    activeId !== null && (activeId === a || activeId === b);
+  const isLineActive = (a, b) => activeId !== null && (activeId === a || activeId === b);
 
   return (
-    // Deliberately inline: the CSS `aspect-ratio` property needs no
-    // Tailwind config, no PostCSS pipeline, and no external stylesheet
-    // to take effect — it cannot silently fail the way an unscanned
-    // Tailwind arbitrary-value class or a misresolved CSS import can.
-    // This is the one style prop in the file that's non-negotiable.
     <div
+      ref={wrapperRef}
       style={{
-        position: "relative",
         width: "100%",
-        maxWidth: "980px",
+        maxWidth: `${DESIGN_WIDTH}px`,
         margin: "0 auto",
-        aspectRatio: "10 / 7",
+        // Height is set from the SAME measured scale used to shrink the
+        // canvas below, so the wrapper always reserves exactly the
+        // right amount of space — never 0, never stretched.
+        height: `${DESIGN_HEIGHT * scale}px`,
+        position: "relative",
       }}
     >
-      <div className="absolute inset-0">
+      <div
+        style={{
+          width: `${DESIGN_WIDTH}px`,
+          height: `${DESIGN_HEIGHT}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
         {/* Star field */}
         <div className="absolute inset-0 overflow-hidden rounded-3xl">
           {STARS.map((star) => (
             <span
               key={star.id}
-              className={`star-twinkle absolute rounded-full bg-slate-400/70`}
+              className="star-twinkle absolute rounded-full bg-slate-400/70"
               style={{
-                left: `${star.x}%`,
-                top: `${star.y}%`,
+                left: `${star.x}px`,
+                top: `${star.y}px`,
                 width: `${star.size}px`,
                 height: `${star.size}px`,
                 animationDelay: `${star.variant * 0.7}s`,
@@ -63,11 +102,12 @@ export default function SkillsCanvas() {
           ))}
         </div>
 
-        {/* SVG connector lines */}
+        {/* SVG connector lines — 1:1 pixel mapping with the canvas above */}
         <svg
-          className="absolute inset-0 w-full h-full"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
+          className="absolute inset-0"
+          width={DESIGN_WIDTH}
+          height={DESIGN_HEIGHT}
+          viewBox={`0 0 ${DESIGN_WIDTH} ${DESIGN_HEIGHT}`}
         >
           <defs>
             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -77,7 +117,6 @@ export default function SkillsCanvas() {
             </linearGradient>
           </defs>
 
-          {/* Center -> node lines */}
           {SKILLS.map((skill) => {
             const active = isLineActive(skill.id, skill.id);
             return (
@@ -88,15 +127,13 @@ export default function SkillsCanvas() {
                 x2={skill.x}
                 y2={skill.y}
                 stroke="url(#lineGradient)"
-                strokeWidth={active ? 0.35 : 0.15}
+                strokeWidth={active ? 2 : 1}
                 opacity={active ? 0.9 : activeId ? 0.08 : 0.25}
-                className="line-draw transition-all duration-500 ease-out"
-                vectorEffect="non-scaling-stroke"
+                className="transition-all duration-500 ease-out"
               />
             );
           })}
 
-          {/* Intra-category relationship lines */}
           {CONNECTIONS.map(([a, b]) => {
             const from = byId[a];
             const to = byId[b];
@@ -111,10 +148,9 @@ export default function SkillsCanvas() {
                 x2={to.x}
                 y2={to.y}
                 stroke={accent.stroke}
-                strokeWidth={active ? 0.3 : 0.12}
+                strokeWidth={active ? 1.8 : 0.8}
                 opacity={active ? 0.85 : activeId ? 0.08 : 0.3}
                 className="transition-all duration-500 ease-out"
-                vectorEffect="non-scaling-stroke"
               />
             );
           })}
@@ -123,14 +159,31 @@ export default function SkillsCanvas() {
         {/* Center node */}
         <div
           className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
-          style={{ left: `${CENTER.x}%`, top: `${CENTER.y}%` }}
+          style={{ left: `${CENTER.x}px`, top: `${CENTER.y}px` }}
         >
-          <span className="center-pulse absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 blur-2xl" />
-          <span className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex flex-col items-center justify-center bg-[#0B1220]/90 backdrop-blur-xl border border-slate-700 shadow-[0_0_40px_rgba(139,92,246,0.35)]">
-            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-br from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+   <span
+  className="
+    center-pulse
+    absolute
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    w-24 h-24
+    sm:w-28 sm:h-28
+    rounded-full
+    bg-gradient-to-br
+    from-indigo-500
+    via-violet-500
+    to-cyan-500
+    blur-2xl
+  "
+/>
+          <span className="relative w-24 h-24 rounded-full flex flex-col items-center justify-center bg-[#0B1220]/90 backdrop-blur-xl border border-slate-700 shadow-[0_0_40px_rgba(139,92,246,0.35)]">
+            <span className="text-2xl font-bold bg-gradient-to-br from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
               KS
             </span>
-            <span className="text-[9px] sm:text-[10px] text-slate-400 tracking-wide mt-0.5">
+            <span className="text-[10px] text-slate-400 tracking-wide mt-0.5">
               Developer
             </span>
           </span>

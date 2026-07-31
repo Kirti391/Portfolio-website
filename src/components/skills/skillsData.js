@@ -20,24 +20,32 @@ import {
 import { TbApi } from "react-icons/tb";
 
 /**
- * Ellipse the constellation is plotted on, in percentage units
- * relative to the canvas. Keeping this data-driven (rather than a
- * CSS grid) is what lets every node sit off-axis like a real star
- * field instead of a tidy rows-and-columns layout.
+ * FIXED PIXEL DESIGN CANVAS
+ * ---------------------------------------------------------------
+ * Every coordinate below is a literal pixel inside a 940x680 design
+ * canvas. There is no percentage math and no CSS aspect-ratio
+ * dependency anywhere in this layout — SkillsCanvas.jsx renders this
+ * fixed-size canvas once, then scales the *whole thing* down with a
+ * single measured `transform: scale()` factor to fit the screen.
+ *
+ * This means the constellation's shape is 100% deterministic: it
+ * looks exactly the same on every browser/build/Tailwind config,
+ * because nothing here depends on the parent container's aspect
+ * ratio ever resolving correctly.
  */
-const RX = 36; // horizontal radius (%)
-const RY = 32; // vertical radius (%)
+export const DESIGN_WIDTH = 940;
+export const DESIGN_HEIGHT = 680;
+export const CENTER = { x: 470, y: 340 };
+
+const RX = 300; // horizontal radius in px
+const RY = 235; // vertical radius in px
 
 const toRad = (deg) => (deg * Math.PI) / 180;
 
 // angle: position around the ellipse (0deg = right, 90deg = top)
-// radius: 0-1 multiplier, varied per node so distances feel organic
-//
-// 16 nodes total, spaced 22.5deg apart so each category cluster gets
-// an arc proportional to its size (Frontend 6, Backend 4, Languages 4,
-// Tools 2) while the whole ring stays evenly distributed.
+// radius: 0-1 multiplier per node so distances vary organically
 const RAW_SKILLS = [
-  // Frontend cluster (135deg arc)
+  // Frontend cluster
   { id: "react", name: "React", category: "frontend", Icon: FaReact, angle: 100, radius: 0.85 },
   { id: "javascript", name: "JavaScript", category: "frontend", Icon: SiJavascript, angle: 122.5, radius: 1.0 },
   { id: "tailwind", name: "Tailwind CSS", category: "frontend", Icon: SiTailwindcss, angle: 145, radius: 0.65 },
@@ -45,24 +53,23 @@ const RAW_SKILLS = [
   { id: "css", name: "CSS3", category: "frontend", Icon: FaCss3Alt, angle: 190, radius: 0.72 },
   { id: "vite", name: "Vite", category: "frontend", Icon: SiVite, angle: 212.5, radius: 0.6 },
 
-  // Backend cluster (90deg arc)
+  // Backend cluster
   { id: "nodejs", name: "Node.js", category: "backend", Icon: FaNodeJs, angle: 235, radius: 0.9 },
   { id: "express", name: "Express", category: "backend", Icon: SiExpress, angle: 257.5, radius: 0.62 },
   { id: "restapi", name: "RESTful API", category: "backend", Icon: TbApi, angle: 280, radius: 1.0 },
   { id: "mongodb", name: "MongoDB", category: "backend", Icon: SiMongodb, angle: 302.5, radius: 0.68 },
 
-  // Languages cluster (90deg arc)
+  // Languages cluster
   { id: "java", name: "Java", category: "languages", Icon: FaJava, angle: 325, radius: 0.88 },
   { id: "python", name: "Python", category: "languages", Icon: FaPython, angle: 347.5, radius: 0.62 },
   { id: "cpp", name: "C++", category: "languages", Icon: SiCplusplus, angle: 10, radius: 1.0 },
   { id: "sql", name: "SQL", category: "languages", Icon: FaDatabase, angle: 32.5, radius: 0.7 },
 
-  // Tools cluster (45deg arc)
+  // Tools cluster
   { id: "git", name: "Git", category: "tools", Icon: FaGitAlt, angle: 55, radius: 0.95 },
   { id: "github", name: "GitHub", category: "tools", Icon: FaGithub, angle: 77.5, radius: 0.65 },
 ];
 
-// Accent per category, drawn only from the existing indigo/violet/cyan system
 export const CATEGORY_ACCENT = {
   frontend: {
     text: "text-cyan-300",
@@ -94,24 +101,20 @@ export const CATEGORY_ACCENT = {
   },
 };
 
-// Precompute x/y (%) for every node from its angle + radius
+// Precompute literal x/y pixel coordinates for every node, once.
 export const SKILLS = RAW_SKILLS.map((skill, index) => {
   const rad = toRad(skill.angle);
-  const x = 50 + RX * skill.radius * Math.cos(rad);
-  const y = 50 - RY * skill.radius * Math.sin(rad);
+  const x = CENTER.x + RX * skill.radius * Math.cos(rad);
+  const y = CENTER.y - RY * skill.radius * Math.sin(rad);
   return {
     ...skill,
-    x,
-    y,
-    // deterministic variation for float timing, picked from a small
-    // pool of preset durations/delays (kept in skills.css) instead of
-    // inline styles
+    x: Math.round(x),
+    y: Math.round(y),
     floatVariant: index % 6,
   };
 });
 
-// Sequential "chain" links within each category — this is what makes
-// the SVG draw real relationships instead of random lines.
+// Sequential relationship links within each category
 export const CONNECTIONS = [
   ["react", "javascript"],
   ["javascript", "tailwind"],
@@ -129,5 +132,3 @@ export const CONNECTIONS = [
 
   ["git", "github"],
 ];
-
-export const CENTER = { x: 50, y: 50 };

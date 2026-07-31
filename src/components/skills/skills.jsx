@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import SkillsCanvas from "./SkillsCanvas";
 import "./skills.css";
@@ -8,7 +10,6 @@ export default function Skills() {
       id="skills"
       className="relative py-24 sm:py-32 bg-[#030712] overflow-hidden"
     >
-      {/* ambient background glow, consistent with the rest of the site */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="w-[40rem] h-[40rem] rounded-full bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-cyan-500/10 blur-3xl" />
       </div>
