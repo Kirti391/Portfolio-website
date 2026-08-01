@@ -129,7 +129,7 @@ export default function SkillsCanvas() {
                 stroke="url(#lineGradient)"
                 // strokeWidth={active ? 2 : 1}
                 opacity={active ? 1.0 : activeId ? 0.08 : 0.25}
-                strokeWidth={active ? 0.35 : 0.08}
+                strokeWidth={active ? 1.4 : 0.08}
                 // opacity={active ? 0.95 : activeId ? 0.05 : 0.08}/
                 className="transition-all duration-500 ease-out"
               />
@@ -151,7 +151,7 @@ export default function SkillsCanvas() {
                 y2={to.y}
                 stroke={accent.stroke}
                 // strokeWidth={active ? 1.8 : 0.8}
-                strokeWidth={active ? 0.3 : 0.08}
+                strokeWidth={active ? 1.2 : 0.08}
                 // opacity={active ? 0.85 : activeId ? 0.08 : 0.3}
                 opacity={active ? 0.85 : activeId ? 0.08 : 0.3}
                 className="transition-all duration-500 ease-out"
