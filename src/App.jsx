@@ -3,8 +3,11 @@ import Navbar from './components/navbar'
 import Hero from './components/hero'
 import About from './components/about/about'
 import Skills from './components/skills/Skills'
-import Footer from './components/footer'
+import Projects from './components/projects/Projects'
 import Contact from './components/contact/contact'
+import Footer from './components/footer'
+
+
 
 function App() {
 
@@ -16,6 +19,7 @@ function App() {
      <Hero />
      <About/>
      <Skills/>
+     <Projects/>
      <Contact/>
      <Footer/>
 
