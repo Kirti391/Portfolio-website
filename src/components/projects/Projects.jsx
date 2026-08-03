@@ -1,4 +1,4 @@
-
+import FeaturedProject from "./FeaturedProject";
 function Projects(){
 
     return (
@@ -31,7 +31,7 @@ function Projects(){
                   </p>
                 </div>
         
-               
+               <FeaturedProject />
               </div>
             </section>
     )

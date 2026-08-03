@@ -1,18 +1,17 @@
 import BrowserMockup from "./BrowserMockup";
 import ProjectInfo from "./ProjectInfo";
-
-import portfolio from "../../assets/project-preview.png";
+import { featuredProject } from "./projectsData";
 
 function FeaturedProject() {
-    return (
-        <div className="mt-20 grid items-center gap-14 lg:grid-cols-2">
+  return (
+    <div className="mt-20 grid gap-16 lg:grid-cols-2 items-center">
 
-            <BrowserMockup image={portfolio} />
+      <BrowserMockup image={featuredProject.image} />
 
-            <ProjectInfo />
+      <ProjectInfo project={featuredProject} />
 
-        </div>
-    );
+    </div>
+  );
 }
 
 export default FeaturedProject;
