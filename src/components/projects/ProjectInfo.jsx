@@ -1,3 +1,6 @@
+import TechBadge from "./TechBadge";
+import ProjectButton from "./ProjectButton";
+
 function ProjectInfo({ project }) {
 
     return (
@@ -7,13 +10,20 @@ function ProjectInfo({ project }) {
                 Case Study 01
             </span>
 
-            <h3 className="mt-4 text-4xl font-bold text-white">
+            {/* <h3 className="mt-4 text-4xl font-bold text-white">
+                {project.title}
+            </h3> */}
+            <h3 className="mt-3 text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
                 {project.title}
             </h3>
 
-            <p className="mt-6 text-slate-300 leading-8">
+            <p className="mt-6 text-lg leading-8 text-slate-300 max-w-xl">
                 {project.description}
             </p>
+
+            {/* <p className="mt-6 text-slate-300 leading-8">
+                {project.description}
+            </p> */}
 
             <div className="mt-8 flex flex-wrap gap-3">
                 {project.tech.map((item) => (
@@ -36,3 +46,4 @@ function ProjectInfo({ project }) {
         </div>
     );
 }
+export default ProjectInfo;
