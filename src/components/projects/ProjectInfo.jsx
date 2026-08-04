@@ -32,11 +32,30 @@ function ProjectInfo({ project }) {
             </div>
 
             <div className="mt-10 flex gap-4">
-                <ProjectButton
+                {/* <ProjectButton
                     text="Live Demo"
                     variant="primary"
-                />
-
+                /> */}
+<button
+    className="
+        group
+        flex
+        items-center
+        gap-2
+        rounded-xl
+        bg-indigo-500
+        px-6
+        py-3
+        font-medium
+        text-white
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:bg-indigo-400
+    "
+>
+    Live Demo
+</button>
                 <ProjectButton
                     text="GitHub"
                     variant="secondary"
