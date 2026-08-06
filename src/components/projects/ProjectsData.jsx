@@ -1,20 +1,39 @@
-// projectsData.js
+// // projectsData.js
 
-import portfolioPreview from "../../assets/anime.png";
+// import portfolioPreview from "../../assets/anime.png";
 
+// export const featuredProject = {
+//   title: "Modern Portfolio",
+//   description:
+//     "A premium developer portfolio built with React and Tailwind CSS, focusing on smooth interactions, clean UI, and responsive design.",
+//   image: portfolioPreview,
+//   tech: [
+//     "React",
+//     "Tailwind CSS",
+//     "Vite",
+//     "EmailJS"
+//   ],
+//   github: "#",
+//   live: "#"
+// };
+
+// export const projects = [];
 export const featuredProject = {
-  title: "Modern Portfolio",
-  description:
-    "A premium developer portfolio built with React and Tailwind CSS, focusing on smooth interactions, clean UI, and responsive design.",
-  image: portfolioPreview,
-  tech: [
-    "React",
-    "Tailwind CSS",
-    "Vite",
-    "EmailJS"
-  ],
-  github: "#",
-  live: "#"
-};
+    title: "Modern Portfolio",
 
-export const projects = [];
+    description:
+        "A premium portfolio crafted using React and Tailwind CSS, focused on delivering an elegant user experience with reusable components and modern design principles.",
+
+    image: portfolioPreview,
+
+    tech: [
+        "React",
+        "Tailwind CSS",
+        "Vite",
+        "EmailJS",
+    ],
+
+    live: "#",
+
+    github: "#",
+};
