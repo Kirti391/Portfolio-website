@@ -90,3 +90,44 @@ transform-origin:center;
 animation:blink 5s infinite;
 
 }
+
+/* Project Animations */
+@keyframes floatBrowser {
+  0% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+}
+
+.float-browser {
+  animation: floatBrowser 6s ease-in-out infinite;
+}
+@keyframes glowPulse {
+
+  0% {
+    opacity: .45;
+    filter: blur(60px);
+  }
+
+  50% {
+    opacity: .8;
+    filter: blur(75px);
+  }
+
+  100% {
+    opacity: .45;
+    filter: blur(60px);
+  }
+
+}
+
+.browser-glow{
+    animation: glowPulse 6s ease-in-out infinite;
+}

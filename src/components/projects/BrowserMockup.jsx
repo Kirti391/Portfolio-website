@@ -1,10 +1,62 @@
+import { useRef, useState } from "react";
+
 function BrowserMockup({ image }) {
+    const cardRef = useRef(null);
+
+   const [transform, setTransform] = useState(
+    "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
+);
+
+const [spotlight, setSpotlight] = useState({
+    x: 50,
+    y: 50,
+});
+    const handleMouseMove = (e) => {
+        const card = cardRef.current;
+
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+setSpotlight({
+
+    x: (x / rect.width) * 100,
+
+    y: (y / rect.height) * 100,
+
+});
+        const rotateY = ((x - rect.width / 2) / rect.width) * 10;
+        const rotateX = -((y - rect.height / 2) / rect.height) * 10;
+
+        setTransform(`
+            perspective(1200px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(1.02)
+        `);
+    };
+
+   const handleMouseLeave = () => {
+    setTransform(
+        "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
+    );
+
+    setSpotlight({
+        x: 50,
+        y: 50,
+    });
+};
+
     return (
         <div className="group relative mx-auto w-full max-w-2xl">
 
             {/* Background Glow */}
+
             <div
                 className="
+                    browser-glow
                     absolute
                     -inset-6
                     -z-10
@@ -14,39 +66,37 @@ function BrowserMockup({ image }) {
                     via-violet-500/10
                     to-cyan-500/20
                     blur-3xl
-                    opacity-60
-                    transition-all
-                    duration-500
-                    group-hover:opacity-100
                 "
             />
 
             {/* Browser */}
+
             <div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ transform }}
                 className="
+                    float-browser
                     relative
                     overflow-hidden
-                    rounded-[28px]
+                    rounded-[32px]
                     border
                     border-white/10
                     bg-[#0f1117]/80
                     backdrop-blur-xl
                     shadow-[0_25px_70px_rgba(0,0,0,0.45)]
                     transition-all
-                    duration-500
-                    rotate-[-2deg]
-                    group-hover:rotate-0
-                    group-hover:-translate-y-3
+                    duration-300
+                    will-change-transform
                     group-hover:border-indigo-400/30
-                    group-hover:shadow-[0_35px_90px_rgba(99,102,241,0.22)]
+                    group-hover:shadow-[0_35px_90px_rgba(99,102,241,0.25)]
                 "
             >
 
                 {/* Browser Toolbar */}
 
                 <div className="flex items-center gap-4 border-b border-white/10 px-5 py-4">
-
-                    {/* Traffic Lights */}
 
                     <div className="flex gap-2">
 
@@ -57,8 +107,6 @@ function BrowserMockup({ image }) {
                         <span className="h-3 w-3 rounded-full bg-[#28C840]" />
 
                     </div>
-
-                    {/* Address Bar */}
 
                     <div
                         className="
@@ -80,11 +128,30 @@ function BrowserMockup({ image }) {
 
                 </div>
 
-                {/* Screenshot Area */}
+                {/* Screenshot */}
 
                 <div className="relative overflow-hidden">
 
                     {/* Glass Reflection */}
+                    <div
+    className="
+        pointer-events-none
+        absolute
+        inset-0
+        z-20
+        transition-all
+        duration-150
+    "
+    style={{
+        background: `
+        radial-gradient(
+            circle at ${spotlight.x}% ${spotlight.y}%,
+            rgba(255,255,255,.14),
+            transparent 35%
+        )
+        `,
+    }}
+/>
 
                     <div
                         className="
@@ -93,9 +160,10 @@ function BrowserMockup({ image }) {
                             inset-0
                             z-10
                             bg-gradient-to-br
-                            from-white/10
+                           from-white/5
                             via-transparent
                             to-transparent
+                            
                         "
                     />
 
@@ -115,7 +183,7 @@ function BrowserMockup({ image }) {
 
                 </div>
 
-                {/* Browser Footer */}
+                {/* Footer */}
 
                 <div
                     className="
