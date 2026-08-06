@@ -24,7 +24,7 @@ export const featuredProject = {
     description:
         "A premium portfolio crafted using React and Tailwind CSS, focused on delivering an elegant user experience with reusable components and modern design principles.",
 
-    image: portfolioPreview,
+    // image: portfolioPreview,
 
     tech: [
         "React",

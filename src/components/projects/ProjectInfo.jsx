@@ -101,7 +101,7 @@ function ProjectInfo({ project }) {
             </p>
 
             {/* Metadata */}
-
+{/* 
             <div className="mt-10 grid grid-cols-2 gap-6">
 
                 <InfoItem title="Year" value="2025" />
@@ -116,11 +116,11 @@ function ProjectInfo({ project }) {
 
                 <InfoItem title="Role" value="Solo Developer" />
 
-            </div>
+            </div> */}
 
-            <div className="my-10 h-px bg-white/10"></div>
+            {/* <div className="my-10 h-px bg-white/10"></div>
 
-            {/* Challenge */}
+            Challenge
 
             <div>
 
@@ -134,11 +134,11 @@ function ProjectInfo({ project }) {
                     and responsiveness.
                 </p>
 
-            </div>
+            </div> */}
 
             {/* Solution */}
 
-            <div className="mt-8">
+            {/* <div className="mt-8">
 
                 <h3 className="text-lg font-semibold text-white">
                     The Solution
@@ -150,7 +150,7 @@ function ProjectInfo({ project }) {
                     and scalable architecture.
                 </p>
 
-            </div>
+            </div> */}
 
             {/* Tech Stack */}
 
