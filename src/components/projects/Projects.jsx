@@ -1,4 +1,6 @@
 import FeaturedProject from "./FeaturedProject";
+import { otherProjects } from "./ProjectsData";
+import ProjectCard from "./ProjectCard";
 function Projects(){
 
     return (
@@ -32,7 +34,40 @@ function Projects(){
                 </div>
         
                <FeaturedProject />
+               
               </div>
+              <section className="mt-32">
+
+    <div className="max-w-3xl">
+
+        <span className="text-sm uppercase tracking-[0.25em] text-cyan-400">
+            Selected Work
+        </span>
+
+        <h3 className="mt-4 text-4xl font-bold text-white">
+            More Projects
+        </h3>
+
+        <p className="mt-4 text-lg leading-8 text-slate-400">
+            A collection of projects where I explored different technologies,
+            solved practical problems, and refined my development skills.
+        </p>
+
+    </div>
+
+    <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+
+        {otherProjects.map((project, index) => (
+            <ProjectCard
+                key={project.name}
+                project={project}
+                index={index}
+            />
+        ))}
+
+    </div>
+
+</section>
             </section>
     )
 

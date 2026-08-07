@@ -3,14 +3,14 @@ import { useRef, useState } from "react";
 function BrowserMockup({ image }) {
     const cardRef = useRef(null);
 
-   const [transform, setTransform] = useState(
-    "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
-);
+    const [transform, setTransform] = useState(
+        "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
+    );
 
-const [spotlight, setSpotlight] = useState({
-    x: 50,
-    y: 50,
-});
+    const [spotlight, setSpotlight] = useState({
+        x: 50,
+        y: 50,
+    });
     const handleMouseMove = (e) => {
         const card = cardRef.current;
 
@@ -20,13 +20,13 @@ const [spotlight, setSpotlight] = useState({
 
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-setSpotlight({
+        setSpotlight({
 
-    x: (x / rect.width) * 100,
+            x: (x / rect.width) * 100,
 
-    y: (y / rect.height) * 100,
+            y: (y / rect.height) * 100,
 
-});
+        });
         const rotateY = ((x - rect.width / 2) / rect.width) * 10;
         const rotateX = -((y - rect.height / 2) / rect.height) * 10;
 
@@ -38,18 +38,19 @@ setSpotlight({
         `);
     };
 
-   const handleMouseLeave = () => {
-    setTransform(
-        "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
-    );
+    const handleMouseLeave = () => {
+        setTransform(
+            "perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)"
+        );
 
-    setSpotlight({
-        x: 50,
-        y: 50,
-    });
-};
+        setSpotlight({
+            x: 50,
+            y: 50,
+        });
+    };
 
     return (
+        
         <div className="group relative mx-auto w-full max-w-2xl">
 
             {/* Background Glow */}
@@ -130,11 +131,17 @@ setSpotlight({
 
                 {/* Screenshot */}
 
-                <div className="relative overflow-hidden">
+                <div
+                    className="
+        relative
+        h-[520px]
+        overflow-hidden
+    "
+                >
 
                     {/* Glass Reflection */}
                     <div
-    className="
+                        className="
         pointer-events-none
         absolute
         inset-0
@@ -142,16 +149,16 @@ setSpotlight({
         transition-all
         duration-150
     "
-    style={{
-        background: `
+                        style={{
+                            background: `
         radial-gradient(
             circle at ${spotlight.x}% ${spotlight.y}%,
             rgba(255,255,255,.14),
             transparent 35%
         )
         `,
-    }}
-/>
+                        }}
+                    />
 
                     <div
                         className="
@@ -171,14 +178,14 @@ setSpotlight({
                         src={image}
                         alt="Project Preview"
                         className="
-                            w-full
-                            aspect-video
-                            object-cover
-                            transition-transform
-                            duration-700
-                            ease-out
-                            group-hover:scale-105
-                        "
+w-full
+object-cover
+object-top
+transition-transform
+duration-[7000ms]
+ease-linear
+group-hover:-translate-y-[45%]
+"
                     />
 
                 </div>
